@@ -1,0 +1,53 @@
+
+<mat-drawer-container class="drawer-container">
+
+    <mat-drawer class="mat-drawer" mode="side" opened>
+      
+        <span class="search-and-add">
+            <input type="text" name="search-box" class="search-box" (keyup)="sendData($event)">
+            <button class="button" (click)="addContact()">Add</button>
+        </span>
+        
+        
+        <mat-list class="search-results">
+            <mat-list-item *ngIf="contList.length<1 && searchedContacts">Sorry, nothing matches list.</mat-list-item>
+            
+                <mat-list-item *ngFor="let contact of contList" (click)="showDetails(contact)">
+                <mat-icon matListIcon>{{contact.initials}}</mat-icon>
+                <h3 matLine>{{contact.firstName}} {{contact.lastName}}</h3>
+                <p matLine>{{contact.cellNumber}}</p>
+                <hr matLine>
+            </mat-list-item>
+
+        </mat-list>
+        
+    </mat-drawer>
+
+    <mat-drawer-content class="mat-drawer-content">
+        <h2>{{currentCont.firstName}} {{currentCont.lastName}}</h2>
+        <table>
+            <tr>
+                <td class="table-row-headings">Cellphone:</td>
+                <td class="table-row-headings">Address:</td>
+            </tr>
+            <tr>
+                <td class="table-row-detail">{{currentCont.cellNumber}}</td>
+                <td class="table-row-detail">{{currentCont.address}}</td>
+            </tr>
+
+            <tr>
+                <td class="table-row-headings">Email:</td>
+                <td class="table-row-headings">Agify:</td>
+            </tr>
+            <tr>
+                <td class="table-row-detail">{{currentCont.email}}</td>
+                <td class="table-row-detail">{{currentCont.agify}}</td>
+            </tr>
+        </table>
+
+        <h2>Contact Bio</h2>
+        <p>{{currentCont.bio}}</p>
+    </mat-drawer-content>
+
+</mat-drawer-container>
+  

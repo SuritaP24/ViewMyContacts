@@ -1,0 +1,46 @@
+.drawer-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-drawer {
+    height: 100%;
+    width: 40%;
+
+}
+
+.search-and-add{
+    display: block;
+    margin: 40px auto 0 auto;
+    padding: 10px 20px;
+    max-width: 200px;
+    width: 95%;
+    
+}
+
+.search-box {
+  
+}
+
+.button {
+    max-width: 50px;
+}
+
+.search-results{
+    max-width: 200px;
+    width: 95%;
+    margin: 20px auto 0 auto;
+   
+    
+}
+
+.search-results hr{
+    border: none;
+    height: 1px;
+    background-color:lightgray;
+}
+
+.search-results p{
+    margin: 10px 0;
+}

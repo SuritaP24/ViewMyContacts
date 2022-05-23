@@ -1,0 +1,20 @@
+<div>
+  Contact Manager
+</div>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav opened mode="side" position="start">
+    <ul>
+      <li><a routerLink="/contacts"><img src="/assets/contacts.png" alt="Contacts" width="50px" height="50px"></a></li>
+      <li><a routerLink="/about"><img src="/assets/info.png" alt="About" width="50px" height="50px"></a></li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+ 
+</mat-sidenav-container>
+
