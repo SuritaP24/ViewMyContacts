@@ -1,4 +1,4 @@
-<div>
+<div class="contact-manager">
   Contact Manager
 </div>
 
@@ -6,8 +6,8 @@
 
   <mat-sidenav opened mode="side" position="start">
     <ul>
-      <li><a routerLink="/contacts"><img src="/assets/contacts.png" alt="Contacts" width="50px" height="50px"></a></li>
-      <li><a routerLink="/about"><img src="/assets/info.png" alt="About" width="50px" height="50px"></a></li>
+      <li class="list-item" [ngClass]="{ 'active' : isActive }" (click)="isActive = true; isActive1 = false"><a routerLink="/contacts"><img src="/assets/contacts.png" alt="Contacts"></a></li>
+      <li class="list-item" [ngClass]="{ 'active' : isActive1 }" (click)="isActive = false; isActive1 = true"><a routerLink="/about"><img src="/assets/info.png" alt="About"></a></li>
     </ul>
   </mat-sidenav>
 

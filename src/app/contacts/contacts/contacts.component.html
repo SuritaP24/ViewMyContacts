@@ -3,50 +3,54 @@
 
     <mat-drawer class="mat-drawer" mode="side" opened>
       
-        <span class="search-and-add">
-            <input type="text" name="search-box" class="search-box" (keyup)="sendData($event)">
-            <button class="button" (click)="addContact()">Add</button>
-        </span>
+        <div class="search-wrapper">
+            <input type="text" class="search-box both-seach-wrapper-items" placeholder="Search" (keyup)="sendData($event)">
+            <button mat-flat-button class="button both-seach-wrapper-items" (click)="addContact()">Add</button>
+        </div>
         
-        
-        <mat-list class="search-results">
-            <mat-list-item *ngIf="contList.length<1 && searchedContacts">Sorry, nothing matches list.</mat-list-item>
-            
-                <mat-list-item *ngFor="let contact of contList" (click)="showDetails(contact)">
-                <mat-icon matListIcon>{{contact.initials}}</mat-icon>
-                <h3 matLine>{{contact.firstName}} {{contact.lastName}}</h3>
-                <p matLine>{{contact.cellNumber}}</p>
-                <hr matLine>
-            </mat-list-item>
+        <h3 id="contact-heading">Contacts</h3>
 
+        <mat-list class="search-results">
+            <div *ngIf="contList.length < 1 && searchedContacts"><mat-list-item>Sorry, no matches found.</mat-list-item></div>
+            <div *ngFor="let contact of contList">
+                <mat-list-item class='list' [ngClass]="{ 'active' : contact.active }" (click)="showDetails(contact)">
+                    <mat-icon matListIcon><span id="initials">{{contact.initials}}</span></mat-icon>
+                    <h3 matLine>{{contact.firstName}} {{contact.lastName}}</h3>
+                    <p matLine>{{contact.cellNumber}}</p>
+                </mat-list-item>
+            </div>
         </mat-list>
         
     </mat-drawer>
 
     <mat-drawer-content class="mat-drawer-content">
-        <h2>{{currentCont.firstName}} {{currentCont.lastName}}</h2>
-        <table>
-            <tr>
-                <td class="table-row-headings">Cellphone:</td>
-                <td class="table-row-headings">Address:</td>
-            </tr>
-            <tr>
-                <td class="table-row-detail">{{currentCont.cellNumber}}</td>
-                <td class="table-row-detail">{{currentCont.address}}</td>
-            </tr>
+        <div class="contact-details">
+            <h2>{{currentCont.firstName}} {{currentCont.lastName}}</h2>
+            <table>
+                <tr>
+                    <td class="table-headings col-1">Cellphone:</td>
+                    <td class="table-headings">Address:</td>
+                </tr>
+                <tr>
+                    <td class="col-1">{{currentCont.cellNumber}}</td>
+                    <td>{{currentCont.address}}</td>
+                </tr>
+    
+                <tr>
+                    <td class="table-headings col-1">Email:</td>
+                    <td class="table-headings">Agify:</td>
+                </tr>
+                <tr>
+                    <td class="col-1">{{currentCont.email}}</td>
+                    <td>{{currentCont.agify}}</td>
+                </tr>
+            </table>
+        </div>
 
-            <tr>
-                <td class="table-row-headings">Email:</td>
-                <td class="table-row-headings">Agify:</td>
-            </tr>
-            <tr>
-                <td class="table-row-detail">{{currentCont.email}}</td>
-                <td class="table-row-detail">{{currentCont.agify}}</td>
-            </tr>
-        </table>
-
-        <h2>Contact Bio</h2>
-        <p>{{currentCont.bio}}</p>
+        <div class="cont-bio">
+            <h2>Contact Bio</h2>
+            <p>{{currentCont.bio}}</p>
+        </div>
     </mat-drawer-content>
 
 </mat-drawer-container>

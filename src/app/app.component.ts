@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ViewMyContacts';
+
+  isActive:boolean = true;
+  isActive1:boolean = false;
 }

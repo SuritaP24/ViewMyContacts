@@ -18,10 +18,10 @@ export class ContactsComponent implements OnInit {
   constructor(private contDataService : contDataService,public dialog: MatDialog) {
       this.contList = this.contDataService.contactsListInit;
       this.currentCont = this.contList[0];
+      this.contDataService.setActive(this.contList[0]);
     }
 
   ngOnInit(): void {
-    
   }
 
   sendData(event:any){
@@ -29,13 +29,16 @@ export class ContactsComponent implements OnInit {
     
     //if there is only one result in the array, show the details in the screen to the right
     if(this.contList.length < 2){
+      this.contDataService.setActive(this.contList[0]);
       this.currentCont = this.contList[0];
     }
-
     this.searchedContacts = true;
   }
 
-  showDetails(contact:any){
+  
+
+  showDetails(contact:ContactsInit){
+    this.contDataService.setActive(contact);
     this.currentCont = contact;
   }
 
@@ -46,11 +49,13 @@ export class ContactsComponent implements OnInit {
       width: '600px',
       disableClose: true,
       autoFocus:true,
-      // data: {},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result!=undefined){
+        this.contDataService.setAgify(result);
+        this.contDataService.contactsListInit.push(result);
+      }
     });
   }
 

@@ -14,12 +14,14 @@
 
   <mat-form-field class="full-width">
     <mat-label>Email</mat-label>
-    <input matInput type="text" maxlength="50" name="email" [(ngModel)]="newContact.email" required>
+    <input matInput type="text" maxlength="50" name="email" [(ngModel)]="newContact.email" [formControl]="emailValidator" required>
+    <mat-error *ngIf="emailValidator.invalid">Not a valid email address.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width">
     <mat-label>Cell Number</mat-label>
-    <input matInput type="number" maxlength="10" name="cellNumber" [(ngModel)]="newContact.cellNumber" required>
+    <input matInput type="tel" maxlength="10" minlength="10" name="cellNumber" [(ngModel)]="newContact.cellNumber" [formControl]="cellValidator" required>
+    <mat-error *ngIf="cellValidator.invalid">Not a valid cell number.</mat-error>
   </mat-form-field>
 
   <mat-form-field class="full-width">
@@ -34,11 +36,11 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button type="submit" [disabled]="myForm.invalid"
-    (click)="calculateInitialsAndAgify()" [mat-dialog-close]="newContact" >Save</button>
+
+    <button mat-button type="submit" [disabled]="myForm.invalid" [ngClass]="{'submit' : myForm.valid, 'invalid' : myForm.invalid}" 
+    (click)="calculateInitialsAndAgify()" [mat-dialog-close]="newContact">Save</button>
+
   </div>
-
-
 </form>
 
 
